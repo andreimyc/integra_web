@@ -1,0 +1,16 @@
+# Виртуальное окружение
+.venv/
+
+# Кэш Python / pytest
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Локальные артефакты Playwright
+playwright-report/
+test-results/
+
+# Конфиденциальные файлы и временные артефакты
+.env
+auth_state.json
+
