@@ -5,9 +5,15 @@ from pages.auth_page import AuthPage
 
 
 class TestAuthPage:
-    """Тесты для страницы авторизации"""
+    """Тесты для страницы авторизации.
+
+    Здесь остаётся один эталонный тест полного флоу логина, остальные
+    сценарные тесты должны использовать уже авторизованную страницу
+    через фикстуру `authenticated_page`.
+    """
 
     @pytest.mark.auth
+    @pytest.mark.auth_flow
     def test_successful_login(
         self,
         page: Page,
@@ -15,7 +21,7 @@ class TestAuthPage:
         username: str,
         password: str,
     ) -> None:
-        """Тест проверяет, что после успешной авторизации открывается страница /ru/invoices."""
+        """Проверяет, что после успешной авторизации открывается страница /ru/invoices."""
         auth_page.enter_username(username)
         auth_page.enter_code(password)
 

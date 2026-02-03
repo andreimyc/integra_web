@@ -1,15 +1,14 @@
-import os
-
 from playwright.sync_api import Locator, Page
 
+from pages.base_page import BasePage
 
-class AuthPage:
+
+class AuthPage(BasePage):
     """Page Object для страницы авторизации CUPRA.IO."""
 
     def __init__(self, page: Page) -> None:
         """Инициализация класса AuthPage."""
-        self.page = page
-        self.base_url = os.getenv("BASE_URL")
+        super().__init__(page)
         self._init_locators()
 
     def _init_locators(self) -> None:
@@ -21,9 +20,8 @@ class AuthPage:
         self.otp_inputs: Locator = self.page.get_by_role("textbox")
 
     def navigate(self) -> "AuthPage":
-        """Переход на стартовую страницу авторизации."""
-        self.page.goto(self.base_url)
-        self.page.wait_for_load_state("networkidle")
+        """Переход на стартовую страницу авторизации (BASE_URL)."""
+        super().navigate()
         return self
 
     def enter_username(self, username: str) -> "AuthPage":
